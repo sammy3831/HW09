@@ -1,34 +1,22 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+// BBPawn.cpp
 
 #include "Pawn/BBPawn.h"
+#include "BaseBall.h"
 
-// Sets default values
-ABBPawn::ABBPawn()
-{
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
-}
-
-// Called when the game starts or when spawned
 void ABBPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	FString NetRoleString = BaseBallFunctionLibrary::GetRoleString(this);
+	FString CombinedString = FString::Printf(TEXT("BBPawn::BeginPlay() %s [%s]"), *BaseBallFunctionLibrary::GetNetModeString(this), *NetRoleString);
+	BaseBallFunctionLibrary::MyPrintString(this, CombinedString, 10.f);
 }
 
-// Called every frame
-void ABBPawn::Tick(float DeltaTime)
+void ABBPawn::PossessedBy(AController* NewController)
 {
-	Super::Tick(DeltaTime);
+	Super::PossessedBy(NewController);
 
+	FString NetRoleString = BaseBallFunctionLibrary::GetRoleString(this);
+	FString CombinedString = FString::Printf(TEXT("BBPawn::PossessedBy() %s [%s]"), *BaseBallFunctionLibrary::GetNetModeString(this), *NetRoleString);
+	BaseBallFunctionLibrary::MyPrintString(this, CombinedString, 10.f);
 }
-
-// Called to bind functionality to input
-void ABBPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-

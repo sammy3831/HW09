@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// BaseBall.cpp
 
 #include "BaseBall.h"
 #include "Modules/ModuleManager.h"

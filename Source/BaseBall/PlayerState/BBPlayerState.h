@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// BBPlayerState.h
 
 #pragma once
 
@@ -13,5 +13,18 @@ UCLASS()
 class BASEBALL_API ABBPlayerState : public APlayerState
 {
 	GENERATED_BODY()
-	
+
+public:
+	ABBPlayerState();
+
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+	FString GetPlayerInfoString();
+
+	UPROPERTY(Replicated)
+	FString PlayerName;
+	UPROPERTY(Replicated)
+	int32 CurrentGuessCount;
+	UPROPERTY(Replicated)
+	int32 MaxGuessCount;
 };
